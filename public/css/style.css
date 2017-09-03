@@ -1,0 +1,147 @@
+body{
+    background: #000;
+    color: #fff;
+}
+.header {
+    margin: 10px 20px;
+    display: block;
+}
+.header .logo{
+        display: inline-block;
+}
+
+.header .search-form{
+    display: inline-block;
+    float: right;
+    margin: 25px 15px;
+}
+
+.search-form form{
+    display: inline-flex;
+}
+
+.search-form input[type="text"]{
+        height: 35px;
+        width: 250px;
+        padding: 0 15px;
+        color: #000;
+}
+
+.home-data .home-btn{
+    text-align: center;
+}
+
+.home-data{
+    background: #000;
+    color: #fff;
+}
+
+.home-data span {
+    color: #d34500;
+}
+.home-data button.btn-primary{
+    background-color: transparent;
+}
+
+.modal-header .modal-title{
+    text-align: center;
+    font-weight: bold;
+}
+.signup-form{
+    padding: 25px 35px;
+    background: #0c0b0b;
+    border: 1px solid #000;
+    border-radius: 40px;
+    box-shadow: 6px 10px 4px rgba(221, 221, 221, 0.42);
+}
+
+.signup-form form .form-group{
+        margin: 20px 10px;
+}
+
+.login-form{
+    padding: 25px 35px;
+    background: rgba(169, 169, 169, 0.13);
+    border: 1px solid transparent;
+    border-radius: 40px;
+}
+
+.login-form form .form-group{
+        margin: 20px 10px;
+}
+
+.signup-page .row .col-sm-5:nth-child(2){
+    float: right;
+}
+
+form .iphn-btn{
+    text-align: center;
+}
+
+.round-button {
+    width:50px;
+    height:50px;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+    color:#f5f5f5;
+    background: #464646;
+    box-shadow: 0 0 3px gray;
+}
+.round-button:hover {
+    background: #262626;
+}
+
+.signup-body{
+    width: 400px;
+    margin: auto;
+}
+
+.signup-form .screen{
+        border: 1px solid #c1c1c1;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.signup-form .strip{
+    width: 100px;
+    height: 7px;
+    border: 1px solid;
+    margin: auto;
+    margin-bottom: 30px;
+    background: rgba(78, 72, 72, 0.6);
+}
+
+.modal-header h4#myModalLabel{color: #000; font-size: 21px;}
+
+
+
+.wrap{
+    text-align: center;
+}
+
+.btn-facebook {
+      background: #3B5998;
+      border-radius: 0;
+      color: #fff;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #263961;
+      padding: 18px 50px;       
+    }
+    .btn-facebook:active, .btn-facebook:hover {
+      background: #263961;
+      color: #fff;
+    }
+.fbuk{
+    max-width: 600px;
+    border: 1px solid #fff;
+    border-radius: 40px;
+    margin: 0 auto;
+}
+
+
+.fbuk .jumbotron{
+    background: transparent;
+    padding: 10px 20px;
+    text-align: center;
+}

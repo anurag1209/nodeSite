@@ -1,0 +1,52 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width: 320px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Fill up your details and we'll be in touch shortly</h4>
+            </div>
+            <div class="modal-body">
+                <div class="signup-form">
+                    <div class="strip"></div>
+                        <form method="POST" action="/auth/local/signup/submit">
+                            <div class="screen">
+                                <div class="form-group">
+                                    <label for="exampleInputName">Name</label>
+                                    <input type="text" class="form-control" id="exampleInputName" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email Address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"  name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="textbox">Any Additional Detail</label>
+                                    <textarea class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="iphn-btn">
+                                <button type="submit" class="btn round-button"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Fill up your details and we'll be in touch shortly</h4>
+                    </div>
+                    <div class="modal-body">
+                        <a type="button" href="/auth/fb" class="btn btn-primary btn-lg btn-block">Login With Facebook</a>
+                        <!-- <a type="button" href="JavaScript:Void(0);" onclick="login();" class="btn btn-primary btn-lg btn-block">Login With Facebook</a> -->
+                        <a type="button" href="/auth/insta" class="btn btn-danger btn-lg btn-block">Login With Instagram</a>
+                        <p style="text-align: center;"> or </p>
+                        <a type="button" href="/auth/local/signup" class="btn btn-default btn-lg btn-block">Login With Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>

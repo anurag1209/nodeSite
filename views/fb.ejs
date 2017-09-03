@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>Facebook Login</title>
+		<meta charset="UTF-8">
+		<% include ../partials/head %>
+	</head>
+	<body>
+	<script>
+	// Initialise and setup FB JS SDK
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId            : '265390447281906',
+	      autoLogAppEvents : true,
+	      xfbml            : true,
+	      version          : 'v2.10'
+	    });
+	    FB.AppEvents.logPageView();
+
+	    FB.getLoginStatus(function(response) {
+		    if (response.status === 'connected') {
+		    	document.getElementById('status').innerHTML = response;
+		    }else if (response.status === 'not_authorized') {
+		    	document.getElementById('status').innerHTML = "we are not logged in";
+		    }else{
+		    	document.getElementById('status').innerHTML = "";
+		    }
+		});
+	  };
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+
+	function login(){
+		FB.login(function(response){
+			if (response.status === 'connected') {
+				// for(var key in response.authResponse){
+				// 	alert(response.authResponse[key]);
+				// }
+		    	window.location = "http://localhost:3000/user";
+		    }else if (response.status === 'not_authorized') {
+		    	document.getElementById('status').innerHTML = "we are not logged in";
+		    }else{
+		    	document.getElementById('status').innerHTML = "";
+		    }
+		});
+	}
+
+	function logout(){
+		
+		FB.logout(function(response) {
+	   // Person is now logged out
+	   document.getElementById('status').innerHTML = "Thanks for logging out securely";
+		});
+	}
+
+	</script>
+
+	<% include ../partials/header %>
+	<div class="fbuk">
+		<div class="jumbotron">
+		  <h2>Please authenticate yourself using facebook.</h2>
+			  <div class="wrap">
+				<a href="JavaScript:Void(0);" onclick="login()" title="Facebook" class="btn btn-facebook btn-lg"><i class="fa fa-facebook fa-fw"></i> Facebook</a>
+				<!-- <button onclick="logout()">Logout from Facebook</button> -->
+			</div>
+		</div>
+	</div>
+	
+	</body>
+	<% include ../partials/footer %>
+    <% include ../partials/homeModal %>
+</html>
