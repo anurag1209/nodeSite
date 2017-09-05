@@ -23,7 +23,7 @@ module.exports = function(app){
 	function localSignup(req, res){
 		
 		res.render('signup-success', {name : req.body.name});
-		var Person = require('./../config/connection');
+		var Person = require('./../../config/connection');
 
 		var ClientData = Person({
 		
@@ -43,7 +43,7 @@ module.exports = function(app){
 	}
 
 	function localLogin(req, res){
-		var Person = require('./../config/connection');
+		var Person = require('./../../config/connection');
 		Person.find({username : req.body.username}, function(err, data){
 			if(err){
 				throw err;
