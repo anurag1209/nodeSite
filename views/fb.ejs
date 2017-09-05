@@ -36,11 +36,8 @@
 	   }(document, 'script', 'facebook-jssdk'));
 
 	function login(){
-		FB.login(function(response){
+		FB.login(function(response){	// FB.login opens the pop up for login
 			if (response.status === 'connected') {
-				// for(var key in response.authResponse){
-				// 	alert(response.authResponse[key]);
-				// }
 		    	window.location = "http://localhost:3000/user";
 		    }else if (response.status === 'not_authorized') {
 		    	document.getElementById('status').innerHTML = "we are not logged in";
