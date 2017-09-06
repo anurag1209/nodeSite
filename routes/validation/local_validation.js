@@ -44,16 +44,48 @@ module.exports = function(app){
 
 	function localLogin(req, res){
 		var Person = require('./../../config/connection');
-		Person.find({username : req.body.username}, function(err, data){
+
+		Person.findOne({
+			username : req.body.username
+		}, function(err, user) {
+
 			if(err){
 				throw err;
+			} 
+
+			if(!user){
+				res.send('Invalid Username');
 			}
-			if(data.length >= 1){
-				res.redirect('http://localhost:300/user');
-			}else{
-				res.send("Invalid credentials");
+			else if(user){
+
+				if(user.password != req.body.password){
+					res.send('Invalid Password');
+				}else{
+					console.log(user);
+					res.redirect('http://localhost:300/user');
+				}
 			}
-			console.log(data);
+
 		});
-	}
+
+
+
+	// 	Person.find({username : req.body.username}, function(err, data){
+	// 		if(err){
+	// 			throw err;
+	// 		}
+	// 		else{
+				
+	// 		}
+
+
+
+	// 		if(data.length >= 1){
+	// 			res.redirect('http://localhost:300/user');
+	// 		}else{
+	// 			res.send("Invalid credentials");
+	// 		}
+	// 		console.log(data);
+	// 	});
+ }
 }
