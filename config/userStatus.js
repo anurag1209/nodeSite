@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var mongoUrl = require('./links');
 var url = mongoUrl['mongo']['status-url'];
 
-mongoose.connect(url);
+mongoose.connect(url , { useMongoClient: true });
 
 //mongoose provide a constructor called schema
 var Schema = mongoose.Schema;
