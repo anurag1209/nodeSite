@@ -24,5 +24,5 @@ app.set( 'view engine', 'ejs');
 app.use('/assets', express.static(__dirname + '/public'));
 
 routes(app);
-
+console.log('App listening at port '+port)
 app.listen(port);
