@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dashboard</title>
+		<% include ../partials/head %>
+	</head>
+<body>
+	<div class="container-fluid">
+	  <div class="row tab-page-head">
+	  	<div class="logo">
+			<a href="http://localhost:3000/"><img src="/assets/images/sasa-logo.jpg" alt=""></a>
+		</div>
+		<div class="logout-btn">
+			<span class="top-username"></span>
+			<a type="button" class="btn btn-default" href="http://localhost:3000/logout">Log Out</a>
+		</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-sm-12 col-md-12 tab-sec">
+	  		<div class="col-sm-3 col-md-3">
+		  		<ul class="tabs">
+		  			<li><a href="javascript:void(0)" class="first">Share Status</a></li>
+		  			<li><a href="javascript:void(0)" class="second">Download Users List</a></li>
+		  			<li><a href="javascript:void(0)" class="third">Chat with friends</a></li>
+		  		</ul>
+		  	</div>
+		  	<div class="col-sm-9 col-md-9">
+			  	<div class="tab-data first active">
+			  		<div class="status-sec">
+			  			<h2 class="status-head">Share something you like</h2>
+			  			<form method="post" action="/userstatus">
+			  				<textarea name="status" class="form-control" rows="7" id="status" placeholder="Share your beautiful thoughts"></textarea><br>
+						<input type="submit" class="btn btn-primary status-btn" value="Share Status"/>
+			  			</form>
+			  		</div>
+
+			  		<div class="lastStatus">
+			  			<h2 class="recent">Recent Status Updates</h2>
+			  			<div class="status-list">
+			  				
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="tab-data second">
+					<div class="table-show" id="printableArea">
+						<h2 class="users-head">Here are the list of users</h2>
+						<table class="table table-striped">
+
+						</table>
+					</div>
+					<!-- <input type="button" onclick="printDiv('printableArea')" value="print a div!" style="color: #000;" /> -->
+
+					<div class="csv-btn">
+						<input type="button" onclick="csvDownload()" value="Download as CSV" class="btn-download">
+					</div>
+			  	</div>
+			  	<div class="tab-data third">
+			  		<div class="chat-sec">
+			  			<div class="screen">
+			  				
+			  			</div>
+			  			<div class="">
+			  				
+			  			</div>
+			  		</div>
+			  	</div>
+		  	</div>
+	  	</div>
+	  </div>
+	</div>
+
+</body>
+	<% include ../partials/footer %>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/assets/js/client.js"></script>
+	<script src="/assets/js/basic.js"></script>
+
+</html>

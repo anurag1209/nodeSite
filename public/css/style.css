@@ -1,147 +1,320 @@
-body{
-    background: #000;
-    color: #fff;
-}
-.header {
-    margin: 10px 20px;
-    display: block;
-}
-.header .logo{
-        display: inline-block;
-}
-
-.header .search-form{
+.logo{
     display: inline-block;
-    float: right;
-    margin: 25px 15px;
+        float: left;
 }
 
-.search-form form{
-    display: inline-flex;
-}
-
-.search-form input[type="text"]{
-        height: 35px;
-        width: 250px;
-        padding: 0 15px;
-        color: #000;
-}
-
-.home-data .home-btn{
-    text-align: center;
-}
-
-.home-data{
-    background: #000;
-    color: #fff;
-}
-
-.home-data span {
-    color: #d34500;
-}
-.home-data button.btn-primary{
-    background-color: transparent;
-}
-
-.modal-header .modal-title{
-    text-align: center;
+h2.signup, h2.signin {
+    font-size: 30px;
     font-weight: bold;
 }
-.signup-form{
-    padding: 25px 35px;
-    background: #0c0b0b;
+
+.menu-sec{
+    display: inline-block;
+    float: right;
+    position: relative;
+    z-index: 9;
+}
+
+.menu-sec ul.menu{
+    margin-top: 10px;
+    overflow: hidden;
+    background: #fff;
+    position: fixed;
+    left: 270px;
+    top: -9px;
+}
+
+.menu-sec ul li{
+    float: left;
+    list-style-type: none;
+    width: 190px;
+    height: auto;
+    padding: 10px 30px;
+    text-align: center;
+}
+
+.menu-sec ul li a{
+    font-size: 19px;
+}
+
+.menu-sec ul li a:hover{text-decoration: none;}
+
+.wrapper{margin-bottom: 20px;}
+
+section {
+    min-height: 100%;
+}
+
+section.home, section.work{background-color: #efe3e3}
+section.about, section.contact{background-color: rgba(181, 225, 234, 0.55);}
+
+.signup-page .logo{
+    display: block;
+    float: none;
+}
+
+.signup-page .login-form, .signup-page .signup-form{
+    border: 1px solid #582e2e;
+    padding: 20px 30px;
+    margin: 10px 50px 0 0;
+    box-shadow: 16px 16px 2px #ddd;
+    border-radius: 15px;
+}
+
+section.sign{
+    margin-top: 25px;
+}
+
+h2.home-head, h2.contact-us, h2.about{
+    font-size: 29px;
+    text-decoration: underline;
+    padding: 17px 0px;
+    font-weight: bold;
+}
+
+p{
+    font-size: 20px;
+    line-height: 24px;
+
+}
+
+ul.arrow{
+    position: relative;
+    list-style-type: none;
+}
+
+ul.arrow li, ul.industries li{
+    font-size: 18px;
+    padding: 10px 0px;
+}
+
+ul.arrow li::before {
+    background: url(http://localhost:3000/assets/images/sprites.png) -22px -929px;
+    content: "";
+    width: 11px;
+    height: 22px;
+    position: absolute;
+    left: 15px;
+}
+
+h2.about-head{
+    font-size: 29px;
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.about .menu-space, .contact .menu-space{
+    margin-top: 60px;
+}
+
+.contact form.contact-form{
+    border: 1px solid #c2c2c2;
+    padding: 20px 30px;
+    margin-top: 25px;
+    background-color: rgba(132, 199, 202, 0.5);
+    border-radius: 15px;
+}
+
+h3.location{
+    text-decoration: underline;
+    margin-bottom: 54px;
+    font-weight: bold;
+    text-align: center;
+}
+
+p.address, p.mail, p.phn{
+    position: relative;
+    padding-left: 50px;
+    line-height: 30px;
+}
+
+p.mail, p.phn{
+    margin-top: 20px;
+}
+
+p.address span.address::before{
+    background: url(http://localhost:3000/assets/images/sprites.png) -7px -796px;
+    content: "";
+    width: 27px;
+    height: 32px;
+    position: absolute;
+    left: 15px;
+    top: 4px;
+}
+
+p.phn span.msg::before{
+    background: url(http://localhost:3000/assets/images/sprites.png) -10px -398px;
+    content: "";
+    width: 27px;
+    height: 32px;
+    position: absolute;
+    left: 15px;
+    top: 7px;
+}
+
+p.mail span.mail::before{
+    background: url(http://localhost:3000/assets/images/sprites.png) -7px -831px;
+    content: "";
+    width: 26px;
+    height: 32px;
+    position: absolute;
+    left: 15px;
+    top: 4px;
+}
+
+.logout-btn{
+    float: right;
+    padding-top: 15px;
+}
+
+.logout-btn button{
+    font-weight: bold;
+}
+
+.chat-sec{
+    position: relative;
+}
+
+.chat-sec .pop-up-chatbox{display: inline-block; right: 0; bottom: 20px; overflow: hidden; margin-right: 130px;}
+.pop-up-chatbox button{border: 1px solid #000; padding: 10px; cursor: pointer;}
+.chat-block{width: 250px; bottom: 0; right: 0; display: none; margin-bottom: 20px; margin-right: 30px;}
+.arrange .chat-block{border: 1px solid #2f2222; border-radius: 20px; padding: 10px 20px;}
+.chat-sec .arrange{position: fixed; bottom: 0px; right: 0;}
+
+.chat-block .screen{min-height: 300px; max-height: 300px; border: 1px solid #000; background: #c2c2c2;}
+
+.carousel-caption {
+    top: 60%;
+    padding-bottom: 60px;
+}
+.carousel-caption h3.carousel-head{
+    font-size: 40px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.carousel-caption p.carousel-data{
+    font-size: 27px;
+    font-style: italic;
+}
+
+.tab-sec ul.tabs{
+    list-style-type: none;
+}
+
+.tab-sec ul.tabs li{
     border: 1px solid #000;
-    border-radius: 40px;
-    box-shadow: 6px 10px 4px rgba(221, 221, 221, 0.42);
+    padding: 25% 0;
+    text-align: center;
+        font-size: 27px;
+    font-weight: bold;
 }
 
-.signup-form form .form-group{
-        margin: 20px 10px;
+.tab-sec .col-sm-3{
+    position: fixed;
 }
 
-.login-form{
-    padding: 25px 35px;
-    background: rgba(169, 169, 169, 0.13);
-    border: 1px solid transparent;
-    border-radius: 40px;
+.tab-sec .col-sm-9{
+    position: absolute;
+    left: 25%;
 }
 
-.login-form form .form-group{
-        margin: 20px 10px;
+.tab-sec .tab-data{
+    border: 1px solid #000;
+    padding: 20px 30px;
+    overflow: scroll;
+    height: 544px;
 }
 
-.signup-page .row .col-sm-5:nth-child(2){
+.row.tab-page-head{
+    width: 1250px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.tab-data{
+    display: none;
+}
+
+.tab-data.active{
+    display: block;
+}
+
+.status-sec  .status-btn{
     float: right;
 }
 
-form .iphn-btn{
-    text-align: center;
-}
-
-.round-button {
-    width:50px;
-    height:50px;
-    border: 2px solid #f5f5f5;
-    border-radius: 50%;
-    color:#f5f5f5;
-    background: #464646;
-    box-shadow: 0 0 3px gray;
-}
-.round-button:hover {
-    background: #262626;
-}
-
-.signup-body{
-    width: 400px;
-    margin: auto;
-}
-
-.signup-form .screen{
-        border: 1px solid #c1c1c1;
-    margin-bottom: 20px;
-    border-radius: 20px;
-}
-
-.signup-form .strip{
-    width: 100px;
-    height: 7px;
-    border: 1px solid;
-    margin: auto;
+.status-sec h2.status-head, h2.users-head{
+    text-decoration: underline;
+    font-style: italic;
+    text-transform: capitalize;
     margin-bottom: 30px;
-    background: rgba(78, 72, 72, 0.6);
+    font-weight: bold;
 }
 
-.modal-header h4#myModalLabel{color: #000; font-size: 21px;}
+.lastStatus h2.recent{
+    margin: 0 0 25px 0;
+    text-decoration: underline;
+    font-weight: bold;
+}
 
+.table-show table.table-striped tr{
+    border-bottom: 1px solid #000;
+    height: 35px;
+}
 
+.table-show table.table-striped .table-head{
+    background: #000;
+    color: #fff;
+}
 
-.wrap{
+table.table-striped tr td, table.table-striped tr th{
     text-align: center;
+    font-size: 20px;
+    padding: 10px 0;
 }
 
-.btn-facebook {
-      background: #3B5998;
-      border-radius: 0;
-      color: #fff;
-      border-width: 1px;
-      border-style: solid;
-      border-color: #263961;
-      padding: 18px 50px;       
-    }
-    .btn-facebook:active, .btn-facebook:hover {
-      background: #263961;
-      color: #fff;
-    }
-.fbuk{
-    max-width: 600px;
-    border: 1px solid #fff;
-    border-radius: 40px;
-    margin: 0 auto;
+.csv-btn{
+    display: inline-block;
+    float: right;
 }
 
+.csv-btn .btn-download{
+    padding: 10px 12px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #000;
+}
 
-.fbuk .jumbotron{
-    background: transparent;
-    padding: 10px 20px;
-    text-align: center;
+.tab-data .status-sec{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.status-list{
+    padding: 0;
+}
+
+.status-div{
+    border: 2px solid #c2c2c2;
+    padding: 6px 20px;
+    overflow: hidden;
+    margin: 15px 0;
+    box-shadow: 7px 6px 1px #4c3838;
+}
+
+h3.status{
+    min-height: 50px;
+    font-size: 22px;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+p.author, p.date{
+    float: right;
+    display: block;
+    clear: both;
+    font-size: 17px;
+    margin-bottom: 0px;
 }

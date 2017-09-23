@@ -12,7 +12,12 @@
     "body-parser": "^1.17.2",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "json2csv": "^3.11.2",
     "mongoose": "^4.11.8",
     "nodemon": "^1.11.0"
+  },
+  "engines": {
+    "node": "6.7.0"
   }
 }

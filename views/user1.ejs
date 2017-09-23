@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Homepage</title>
+	<meta charset="utf-8">
+    <% include ../partials/head %>
+    <style type="text/css">
+	  	.landing-page .header-section{display: block; overflow: hidden; margin: 0 40px;}
+	  	.header-section .logo{display: inline-block; float: left;}
+	  	.header-section .session-out{display: inline-block; float: right;}
+	  	.header-section .session-out button, .header-section .session-out button:hover, .header-section .session-out button:active, .header-section .session-out button:visited, .header-section .session-out button:focus{margin-top: 40px; border: 1px solid #d34500; padding: 10px 20px; border-radius: 10px; background: #d34500; color: #fff;}
+	  	.carousel-indicators li{border: 1px solid #000;}
+	  	.carousel-indicators .active{border: 1px solid #000; background-color: #000;}
+	  	.container .shareboard{border: 1px solid #ddd; padding: 10px 30px; max-width: 600px; background: rgba(202, 213, 222, 0.48)}
+	  	.container .shareboard .share-sec{max-width: 400px;}
+
+
+
+	  	.chat-sec{position: relative;}
+		.chat-sec .pop-up-chatbox{display: inline-block; right: 0; bottom: 20px; overflow: hidden; margin-right: 130px;}
+		.pop-up-chatbox button{border: 1px solid #000; padding: 10px; cursor: pointer;}
+		.chat-block{width: 250px; bottom: 0; right: 0; display: none; margin-bottom: 20px; margin-right: 30px;}
+		.arrange .chat-block{border: 1px solid #2f2222; border-radius: 20px; padding: 10px 20px;}
+		.chat-sec .arrange{position: fixed; bottom: 0px; right: 0;}
+
+		.chat-block .screen{min-height: 300px; max-height: 300px; border: 1px solid #000;     background: #c2c2c2;}
+    </style>
+</head>
+<body>
+
+<div class="landing-page">
+	<div class="header-section">
+		<div class="logo">
+			<img src="/assets/images/isabella.png">
+		</div>
+		<div class="session-out">
+			<button>Logout</button>
+		</div>
+	</div>
+	<div class="container">
+		<div class="chat-sec">
+			<div class="arrange">
+				<div class="pop-up-chatbox"><button class="chat-btn">Click Here to Chat</button></div>	
+				 <div class="chat-block">
+				 	<div class="screen">
+				 		<ul id="thread">
+				 			<li><b>Total Members Online : <span id="nmbr"></span></b></li>
+				 		</ul>
+				 	</div>
+					<form method="POST" action="">
+						<div class="form-group">
+						    <label for="newStatus">Tell us what's in your mind</label>
+						    <input type="text" name="message" id="message" class="form-control" autocomplete="off"/>
+					    </div>
+					    <button type="submit" class="btn btn-primary">Send</button>
+					</form>
+				</div> 
+			</div>
+		</div>
+		<div class="user-welcome">
+			<h2 class="acknowledge">Hello User, You can share your stories or you can chat with us!!</h2>
+		</div>	
+		<div class="shareboard">
+			<div class="share-sec">
+				<form>
+					<div class="form-group">
+					    <label for="newStatus">Tell us what's in your mind</label>
+					    <textarea class="form-control" id="newStatus" rows="6" name="newStatus"></textarea>
+				    </div>
+				    <input type="submit" class="btn btn-primary" Value="Submit Status">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+	<% include ../partials/footer %>
+    <script src="/socket.io/socket.io.js"></script>
+	<script src="client.js"></script>
+	<script>
+    	jQuery(document).ready(function(){
+    		jQuery('.chat-btn').click(function(){
+    			jQuery('.chat-block').toggle('slow');
+    		});
+    	});
+    </script>
+</html>

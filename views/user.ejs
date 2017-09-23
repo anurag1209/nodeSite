@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<% include ../partials/head %>
+</head>
+<body>
+	<div class="container">
+		<div class="logo">
+			<a href="http://localhost:3000"><img src="/assets/images/sasa-logo.jpg" alt=""></a>
+		</div>
+		<div class="logout-btn">
+			<a type="button" class="btn btn-default" href="http://localhost:3000/logout">Log Out</a>
+		</div>
+	</div>
+	<!-- <div class="container">
+		<div class="table-show" id="printableArea">
+			<h2>Here are the list of users</h2>
+			<table class="table">
+				
+			</table>
+		</div>
+		<input type="button" onclick="printDiv('printableArea')" value="print a div!" style="color: #000;" />
+
+		<input type="button" onclick="csvDownload()" value="Download as CSV" style="color: #000;" />
+	</div> -->
+	<div class="container">
+		<div class="chat-sec">
+			<div class="arrange">
+				<div class="pop-up-chatbox"><button class="chat-btn">Click Here to Chat</button></div>	
+				 <div class="chat-block">
+				 	<div class="screen">
+				 		<ul id="thread">
+				 			<li><b>Total Members Online : <span id="nmbr"></span></b></li>
+				 		</ul>
+				 	</div>
+					<form method="POST" action="">
+						<div class="form-group">
+						    <label for="newStatus">Tell us what's in your mind</label>
+						    <input type="text" name="message" id="message" class="form-control" autocomplete="off"/>
+					    </div>
+					    <button type="submit" class="btn btn-primary">Send</button>
+					</form>
+				</div> 
+			</div>
+		</div>
+		<div class="user-welcome">
+			<h2 class="acknowledge">Hello User, You can share your stories or you can chat with us!!</h2>
+		</div>	
+		<div class="shareboard">
+			<div class="share-sec">
+				<form>
+					<div class="form-group">
+					    <label for="newStatus">Tell us what's in your mind</label>
+					    <textarea class="form-control" id="newStatus" rows="6" name="newStatus"></textarea>
+				    </div>
+				    <input type="submit" class="btn btn-primary" Value="Submit Status">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+	<% include ../partials/footer %>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="client.js"></script>
+	<script>
+    	jQuery(document).ready(function(){
+    		jQuery('.chat-btn').click(function(){
+    			jQuery('.chat-block').toggle('slow');
+    		});
+    	});
+    </script>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+
+			fetch('http://localhost:3000/test').then(function(data){
+				
+				return data.json();
+
+			}).then(function(value){
+				if(value){
+					jQuery('table').append('<tr><th> Name </th><th> Username </th><th> Email</th></tr>');
+				}
+				value.forEach(function(val){
+					jQuery('table').append('<tr class=' +  +'><td>' + val.name + '</td><td>' + val.username +'</td><td>' + val.email +'</td></tr>');
+					// console.log(val);
+				});
+				
+			}).catch(function(err){	
+				console.log(err);
+			});
+
+		});
+
+		function printDiv(divName) {
+		     var printContents = document.getElementById(divName).innerHTML;
+		     var originalContents = document.body.innerHTML;
+
+		     document.body.innerHTML = printContents;
+
+		     window.print();
+
+		     document.body.innerHTML = originalContents;
+		}
+
+		function csvDownload(){
+			fetch('http://localhost:3000/csv').then(function(data){
+				
+				return data.json();
+			}).then(function(value){
+				
+				window.location.href = value;
+			}).catch(function(err){	
+				
+				console.log(err);
+		});
+	}
+
+	</script>
+</html>

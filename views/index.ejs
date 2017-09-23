@@ -7,19 +7,131 @@
 
 <body>
     <% include ../partials/header %>
-    <div class="container">
-        <div class="row">
-            <div class="jumbotron home-data">
-                <h1>Hello Users!</h1>
-                <p>This is a fashion Website where you can learn about the latest trends in handbags, clutches, fragrances, dresses and much more.</p>
-                <p>We are in direct contact with top brands like <em><strong>Gucci, Armani, Prada, Chanel, Carolina Herrera</strong></em> and many more.</p>
-                <p>Just <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-phone-alt"></span></button> with your requirement and we will provide you the best options available in town</p>
-                <div class="home-btn">
-                    <a class="btn btn-primary btn-lg" href="javascript:void(0)" role="button"  data-toggle="modal" data-target="#loginModal">Join Us To Know More</a>
+    <section class="home">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="/assets/images/Pharmaceutical.jpg" alt="Los Angeles" style="width:100%; height: 650px!important;">
+            <div class="carousel-caption">
+              <h3 class="carousel-head">Pharmaceutical</h3>
+              <p class="carousel-data">We are know in the field of medicines as a pioneer in developing cures.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <img src="/assets/images/travel.jpg" alt="Chicago" style="width:100%; height: 650px!important;">
+            <div class="carousel-caption">
+              <h3 class="carousel-head">Tours & Travels</h3>
+              <p class="carousel-data">We have packages for so many destinations across India and Abroad with variety of options.</p>
+            </div>
+          </div>
+        
+          <div class="item">
+            <img src="/assets/images/banking.jpg" alt="New york" style="width:100%; height: 650px!important;">
+            <div class="carousel-caption">
+              <h3 class="carousel-head">Banking Solutions</h3>
+              <p class="carousel-data">We provide you with a myriad of banking solutions in easy steps</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </section>
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 menu-space">
+                    <div class="col-sm-5 col-md-5">
+                        <img src="http://localhost:3000/assets/images/shakher.jpg" alt="Shakher Sharma">
+                    </div>
+                    <div class="col-sm-7 col-md-7">
+                        <h2 class="home-head">SASA group of companies</h2>
+                        <p>SASA group of companies was established by <b>Mr. Shakher Sharma</b> in the year 2004 with his brothers. The headquater of this multi-billionaire comapny is located in Lucknow, though it has offices in around 56 different cities</p>
+                        <p>We provide assistance in the following industries : </p>
+                        <ul class="industries">
+                            <li>Pharmaceuticals</li>
+                            <li>Banking & Financial Services</li>
+                            <li>Textile</li>
+                            <li>Tours and Travels</li>
+                        </ul>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="work" id="work"> 
+      <div class="container">
+           <h2 class="home-head">What we do</h2>
+           <p>SASA group of companies provides you with a myriad of options in the field of medicines & lifestyles. It deals with the promotions of events, providing medicines at your doorstep without standing in long queues & appointments and what is trendy.</p>
+           <p>We provide you the medicines for the following diseases :</p>
+           <ul class="arrow">
+               <li>Tuberculosis</li>
+               <li>Cancer</li>
+               <li>Thyroid</li>
+               <li>HIV</li>
+               <li>Jaundice</li>
+               <li>Hepatitis B, C</li>
+           </ul>
+           <p>Apart from the medicines, we have expertise in textiles industries as well. We provide you with apparel of latest trend and without any hasle at best prices.</p>
+           <p>We got a toll free number for you to address your grievances directly to us and our email that is quick to reply.</p>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 menu-space">
+                    <h2 class="contact-us">Contact Us</h2>
+                    <div class="col-sm-4 col-md-4">
+                    <form class="contact-form">
+                      <div class="form-group">
+                        <label for="username">Email address</label>
+                        <input type="text" class="form-control" id="username" placeholder="Username">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="area">
+                    <h3 class="location">Our Location</h3>
+                    <div class="col-sm-4 col-md-4">
+                    <p class="address"><span class="address"></span> 119/54, lalbagh <br/> Khandari Bazar, Lucknow <br/> Uttar Pradesh</p>
+                    <p class="phn"><span class="msg"></span> +91-7080484897</p>
+                    <p class="mail"><span class="mail"></span><a href="mailto:shekhar_sharma2010@yahoo.in">shekhar_sharma2010@yahoo.in</a></p>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1779.9028286523462!2d80.93690758133143!3d26.8461329515666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfda9847c465f%3A0xde44b1fbbab66d84!2sKhandari+Ln%2C+Lalbagh%2C+Lucknow%2C+Uttar+Pradesh!5e0!3m2!1sen!2sin!4v1506019292034" width="300" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
 </body>
     <% include ../partials/footer %>
     <% include ../partials/homeModal %>
