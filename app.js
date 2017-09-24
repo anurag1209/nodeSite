@@ -1,15 +1,28 @@
-var express = require('express');
-
-var routes = require('./routes/index');
+const express 		=  require('express'),
+	  helmet  		=  require('helmet'),
+	  morgan		=  require('morgan'),
+	  bodyParser	=  require('body-parser');
 
 var app = express();
 
-var port = process.env.port || 3000;
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false })) ;
+
+//used helmet to secure headers
+app.use(helmet());
+
+// parse application/json
+app.use(bodyParser.json()) ;
+app.use(morgan('dev'));
+var routes = require('./routes/index');
+
+
+const port = process.env.port || 3000;
 
 app.set( 'view engine', 'ejs');
 
 app.use('/assets', express.static(__dirname + '/public'));
 
 routes(app);
-
+console.log('App listening at port '+port)
 app.listen(port);
