@@ -1,188 +1,172 @@
-var fs = require('fs');
-var json2csv = require('json2csv');
-var session = require('express-session');
+var fs 		  = require('fs'),
+	json2csv  = require('json2csv'),
+	session   = require('express-session'),
+    bodyParser = require('body-parser');
 
 
-var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var sess;
 
-module.exports = function(app){
+class LocalValidation {
+	homepage(req, res) {
+        var sess = req.session;
+        sess.username ? res.redirect('/user') :
+        				res.render('index');
+    }
 
-	app.use(session({
-		secret: 'babu pro',
-		resave: false,
-  		saveUninitialized: true,
-	}));
-	
-	app.get('/', homepage);
+    signIn(req, res) {
+        res.render('signup');
+    }
 
-	app.get('/auth/local/signup', signIn);
 
-	app.post('/auth/local/signup/submit', urlencodedParser, localSignup);
+    userPage(req, res) {
+        sess = req.session;
+        if (sess.username) {
+            res.render('user-tabs');
+        } else {
+            res.write('<h1>Please login first.</h1>');
+            res.end('<a href="/">Login</a>');
+        }
+    }
 
-	app.post('/auth/local/login/submit', urlencodedParser, localLogin);
+     logout(req, res) {
+        req.session.destroy(function(err) {
+        	err ? console.log(err):
+        		  res.redirect('/');
+          
+        });
+    }
 
-	app.get('/test', userTable);
 
-	app.get('/usersendstatus', usersendstatus);
 
-	app.get('/user', userPage);
+     localSignup(req, res) {
 
-	app.get('/csv', createCsvUsers);
+        res.render('signup-success', { name: req.body.name });
+        var Person = require('./../../config/connection');
 
-	app.get('/logout', logout);
 
-	app.post('/userstatus', urlencodedParser, userStatus);
+        var ClientData = Person({
 
-	function homepage(req, res){
-    	var sess = req.session;
-    	if(sess.username){
-    		res.redirect('/user');
-    	}else{
-    		res.render('index');
-    	}
-	}
+            name: req.body.name,
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        });
+        if ((!req.body.username) || (!req.body.email)) { return false; }
+        ClientData.save(function(err) {
+            if (err) throw err;
+            console.log('Data Saved!!');
+            console.log(req.body.name);
+            console.log(req.body.email);
+        });
+    }
 
-	function userPage(req, res){
-		sess = req.session;
-		if(sess.username) {
-	      	res.render('user-tabs');
-	      } 
-	      else {
-	          res.write('<h1>Please login first.</h1>');
-	          res.end('<a href="/">Login</a>');
-	      }
-	}
+     localLogin(req, res) {
+        var Person = require('./../../config/connection');
+        var sess = req.session;
 
-	function logout(req , res){
-    req.session.destroy(function(err) {
-      if(err) {
-        console.log(err);
-      } else {
-        res.redirect('/');
-      }
-    });
+        Person.findOne({
+            username: req.body.username
+        }, function(err, user) {
+
+            if (err) throw err;
+
+
+            if(user) {
+            	 if (user.password != req.body.password) {
+                    res.send('Invalid Password');
+                } else {
+                    console.log(user);
+                    sess.username = req.body.username;
+                    res.redirect('http://localhost:3000/');
+                }
+            }else {
+                res.send('Invalid Username');
+            }
+
+        });
+    }
+
+     userTable(req, res) {
+        var Person = require('./../../config/connection');
+
+        Person.find({}, function(err, data) {
+            if (err) throw err;
+            res.send(data);
+        });
+    }
+
+     usersendstatus(req, res) {
+        var Status = require('./../../config/userStatus');
+        Status.find({}, function(err, data) {
+            if (err) throw err;
+            res.send(data);
+        }).sort({ 'date': -1 });
+    }
+
+     createCsvUsers(req, res) {
+        var Person = require('./../../config/connection');
+        Person.find({}, function(err, data) {
+            if (err) {
+                throw err;
+            }
+
+            var fields = ['_id', 'name', 'username', 'email'];
+            var myData = data;
+
+            var csv = json2csv({ data: myData, fields: fields });
+
+            fs.writeFile('public/csv/file.csv', csv, function(err) {
+                if (err) throw err;
+                console.log('file saved');
+                res.json('http://localhost:3000/assets/csv/file.csv');
+            });
+        });
+
+    }
+
+     userStatus(req, res) {
+        sess = req.session;
+        var Status = require('./../../config/userStatus');
+        var ClientStatus = Status({
+
+            username: sess.username,
+            status: req.body.status,
+            date: Date()
+        });
+        if ((!sess.username) || (!req.body.status)) { return false; }
+        ClientStatus.save(function(err) {
+            if (err) {
+                throw err;
+            }
+            res.render('user-tabs');
+            console.log(sess.username);
+            console.log(req.body.status);
+        });
+    }
 }
 
-	function signIn(req, res){
-	    res.render('signup');
-	}
+var LOCAL_VALIDATION = new LocalValidation;
+module.exports = function(app) {
 
-	function localSignup(req, res){
-		
-		res.render('signup-success', {name : req.body.name});
-		var Person = require('./../../config/connection');
+    app.use(session({
+        secret: 'babu pro',
+        resave: false,
+        saveUninitialized: true,
+    }));
+
+    app.get('/', 											LOCAL_VALIDATION.homepage);
+    app.get('/auth/local/signup', 							LOCAL_VALIDATION.signIn);
+    app.post('/auth/local/signup/submit', urlencodedParser, LOCAL_VALIDATION.localSignup);
+    app.post('/auth/local/login/submit',  urlencodedParser, LOCAL_VALIDATION.localLogin);
+    app.get('/test', 										LOCAL_VALIDATION.userTable);
+    app.get('/usersendstatus', 								LOCAL_VALIDATION.usersendstatus);
+    app.get('/user', 										LOCAL_VALIDATION.userPage);
+    app.get('/csv', 										LOCAL_VALIDATION.createCsvUsers);
+    app.get('/logout', 										LOCAL_VALIDATION.logout);
+    app.post('/userstatus', 			  urlencodedParser, LOCAL_VALIDATION.userStatus);
 
 
-		var ClientData = Person({
-		
-			name : req.body.name,
-			username : req.body.username,
-			email : req.body.email,
-			password : req.body.password
-		});
-		if ((!req.body.username) || (!req.body.email)) { return false;}
-		ClientData.save(function(err){
-			if (err) {
-				throw err;
-			}
-			console.log('Data Saved!!');
-			console.log(req.body.name);
-			console.log(req.body.email);
-		});	
-	}
 
-	function localLogin(req, res){
-		var Person = require('./../../config/connection');
-		var sess = req.session;
-
-		Person.findOne({
-			username : req.body.username
-		}, function(err, user) {
-
-			if(err){
-				throw err;
-			} 
-
-			if(!user){
-				res.send('Invalid Username');
-			}
-			else if(user){
-
-				if(user.password != req.body.password){
-					res.send('Invalid Password');
-				}else{
-					console.log(user);
-					sess.username = req.body.username;
-					res.redirect('http://localhost:3000/');
-				}
-			}
-
-		});
- 	}
-
- 	function userTable(req, res){
-		var Person = require('./../../config/connection');
-		Person.find({}, function(err, data){
-			if(err){
-				throw err;
-			}
-
-			res.send(data);
-		});
-	}
-
-	function usersendstatus(req, res){
-		var Status = require('./../../config/userStatus');
-		Status.find({}, function(err, data){
-			if(err){
-				throw err;
-			}
-
-			res.send(data);
-		}).sort({'date' : -1});
-	}
-
-	function createCsvUsers(req, res){
-		var Person = require('./../../config/connection');
-		Person.find({}, function(err, data){
-			if(err){
-				throw err;
-			}
-
-			var fields = ['_id', 'name', 'username', 'email'];
-			var myData = data;
-
-			var csv = json2csv({ data: myData, fields: fields });
-		 
-			fs.writeFile('public/csv/file.csv', csv, function(err) {
-			  if (err) throw err;
-			  console.log('file saved');
-			  res.json('http://localhost:3000/assets/csv/file.csv');
-			});
-		});
-
-	}
-
-	function userStatus(req, res){
-		sess = req.session;
-		var Status = require('./../../config/userStatus');
-		var ClientStatus = Status({
-		
-			username : sess.username,
-			status : req.body.status,
-			date : Date()
-		});
-		if ((!sess.username) || (!req.body.status)) { return false;}
-		ClientStatus.save(function(err){
-			if (err) {
-				throw err;
-			}
-			res.render('user-tabs');
-			console.log(sess.username);
-			console.log(req.body.status);
-		});	
-	}
 }
